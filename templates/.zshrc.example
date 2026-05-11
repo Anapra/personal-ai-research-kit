@@ -1,0 +1,4 @@
+# Personal AI Research Kit Aliases
+alias gsync='gcloud storage rsync -r . gs://$GCS_BUCKET_NAME/'
+alias mrecall='gemini "Recall memories for $1"'
+alias aserver='pm2 start ~/agentmemory/dist/cli.mjs --name "agentmemory-server" -- --port 3111'

@@ -1,0 +1,29 @@
+# Secrets
+.env
+*.key
+*.json
+*.pem
+
+# Personal configs
+.zshrc
+GEMINI.md
+*.local
+
+# Large files
+*.mp4
+*.mkv
+**/transcripts/raw/*
+**/videos/*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# OS & Editor
+.DS_Store
+.vscode/
+.idea/
+.pm2/

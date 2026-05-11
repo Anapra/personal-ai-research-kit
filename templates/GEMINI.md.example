@@ -1,0 +1,18 @@
+# PROJECT: [Project Name]
+
+## 🚀 SKILLS
+- \`/spec\`: Requirements | \`/plan\`: Architecture | \`/build\`: Implementation | \`/test\`: Verification
+
+## 🧠 AGENTMEMORY
+- **Endpoint:** \`localhost:3111\`
+- **Routine (Start):** \`Recall [Context].\`
+- **Routine (End):** \`Save a lesson: [Summary].\`
+
+## 🛠️ STACK
+- **Cloud:** [GCP/AWS/Azure]
+- **Core:** [Language/Framework]
+- **Storage:** [Bucket/DB]
+
+## ⚖️ STYLE
+- **Python:** Type hints, docstrings.
+- **Infra:** IaC (Terraform).
