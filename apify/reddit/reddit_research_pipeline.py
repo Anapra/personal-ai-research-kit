@@ -10,39 +10,36 @@ import sys
 APIFY_API_TOKEN = os.environ.get("APIFY_TOKEN", "your_apify_token_here")
 ACTOR_ID = "trudax~reddit-scraper-lite"
 BUCKET_NAME = os.environ.get("GCS_BUCKET_NAME", "your_bucket_name_here")
-LOCAL_DATA_DIR = "lead-gen-pipeline/reddit-run/data/raw"
+LOCAL_DATA_DIR = "research-pipeline/reddit/data/raw"
 
-# Monitor Configuration
+# Generic AI and Tech Research Monitor Configuration
 MONITOR_SUBREDDITS = [
-    "googlecloud", "dataengineering", "MachineLearning", "bigdata", 
-    "SaaS", "devops", "CloudComputing", "SaudiArabia", "Dubai", "UAE"
+    "MachineLearning", "ArtificialInteligence", "Singularity", "OpenAI", 
+    "LocalLLaMA", "dataengineering", "bigdata", "SaaS"
 ]
 MONITOR_KEYWORDS = [
-    # Primary Technical & Role Focus
-    "GCP", "Google Cloud", "Cloud Architect", "Data Engineer", "FinOps", 
-    "BigQuery", "Dataflow", "Looker", "Vertex AI", "Anthos", "Sovereign Cloud",
-    # Regional & Compliance Focus
-    "Saudi", "Riyadh", "KSA", "NEOM", "SAMA", "CMA", "MENA", "Dubai", "Abu Dhabi",
-    # High-Intent Hiring Signals
-    "hiring", "we're hiring", "looking for", "open role", "joining the team",
-    "recruiting", "job opening", "apply now", "position available"
+    # General AI Trends
+    "LLM", "Generative AI", "GPT-4", "Claude 3", "Llama 3", "Agentic", 
+    "RAG", "Vector Database", "Fine-tuning", "GPU", "NVIDIA",
+    # Industry Signals
+    "Release", "Open Source", "Benchmark", "Paper", "Research", 
+    "Hiring", "Funding", "Acquisition"
 ]
 
 def run_apify_reddit(search_terms, max_items=20, mode="posts"):
     """
-    Triggers the Apify Reddit Scraper.
+    Triggers the Apify Reddit Scraper for generic AI trend research.
     Modes: posts, comments, subreddits, users, search, monitor
     """
     if mode == "monitor":
-        print(f"--- Starting Reddit MONITOR Run ---")
-        # For monitor, we construct a search query that targets specific subreddits and keywords
-        # Example: (subreddit:googlecloud OR subreddit:dataengineering) "hiring"
+        print(f"--- Starting Reddit AI TREND MONITOR Run ---")
+        # Targets specific high-signal subreddits and keywords
         sub_query = " OR ".join([f"subreddit:{s}" for s in MONITOR_SUBREDDITS])
         key_query = " OR ".join([f'"{k}"' for k in MONITOR_KEYWORDS])
         final_query = f"({sub_query}) ({key_query})"
         print(f"Monitor Query: {final_query}")
         search_terms = final_query
-        mode = "search" # Reuse search logic
+        mode = "search"
 
     print(f"--- Starting Reddit Scraper Run ---")
     print(f"Search Terms: {search_terms} | Max Items: {max_items} | Mode: {mode}")
@@ -125,10 +122,10 @@ def run_apify_reddit(search_terms, max_items=20, mode="posts"):
 
 if __name__ == "__main__":
     # Usage: python3 script.py [search_term] [max_items] [mode]
-    # Example: python3 script.py "GCP Cloud Architect" 10 posts
+    # Example: python3 script.py "Generative AI" 10 posts
     # Example: python3 script.py "" 20 monitor
     
-    search = sys.argv[1] if len(sys.argv) > 1 else "Google Cloud Saudi Arabia"
+    search = sys.argv[1] if len(sys.argv) > 1 else "Artificial Intelligence"
     limit = int(sys.argv[2]) if len(sys.argv) > 2 else 10
     mode = sys.argv[3] if len(sys.argv) > 3 else "posts"
     
