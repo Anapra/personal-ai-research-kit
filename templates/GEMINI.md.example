@@ -1,18 +1,24 @@
-# PROJECT: [Project Name]
+# PROJECT: [Your Project Name]
 
-## 🚀 SKILLS
-- \`/spec\`: Requirements | \`/plan\`: Architecture | \`/build\`: Implementation | \`/test\`: Verification
+## 🚀 AGENT SKILLS
+- `/spec`: Requirements | `/plan`: Architecture | `/build`: Implementation | `/test`: Verification
 
-## 🧠 AGENTMEMORY
-- **Endpoint:** \`localhost:3111\`
-- **Routine (Start):** \`Recall [Context].\`
-- **Routine (End):** \`Save a lesson: [Summary].\`
+## 🧠 AGENTMEMORY (WSL2/Termux)
+- **Primary:** `localhost:3111` (PM2)
+- **Routine (Start):** `Recall memories related to [Project Topic]`
+- **Routine (End):** `Save a lesson: [What you learned]`
 
-## 🛠️ STACK
-- **Cloud:** [GCP/AWS/Azure]
-- **Core:** [Language/Framework]
-- **Storage:** [Bucket/DB]
+## 🛠️ STACK & TOOLS
+- **Cloud:** GCP (BigQuery, GCS, Vertex AI)
+- **Automation:** Apify, yt-dlp, ffmpeg
+- **Workflow:** Gemini CLI + MCP Bridge
 
-## ⚖️ STYLE
-- **Python:** Type hints, docstrings.
-- **Infra:** IaC (Terraform).
+## 📋 WORKFLOW
+1. **Ingest:** Fetch data via Apify or yt-dlp.
+2. **Process:** Clean and structure data.
+3. **Analyze:** Use LLMs for summarization and insights.
+4. **Sync:** Use `gcloud storage rsync` for cross-device consistency.
+
+## ⚖️ CODE STYLE
+- **Python:** Type hints, docstrings (3.11+).
+- **Security:** Use environment variables for all secrets.
