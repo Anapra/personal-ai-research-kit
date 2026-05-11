@@ -1,24 +1,34 @@
-# PROJECT: [Your Project Name]
+# PROJECT: [Workspace Mission Name]
 
-## 🚀 AGENT SKILLS
-- `/spec`: Requirements | `/plan`: Architecture | `/build`: Implementation | `/test`: Verification
+## 🎯 STRATEGIC INTENT
+- **Mission:** [e.g., Mastery of GCP Data Engineering via hands-on labs and automated intelligence gathering.]
+- **Primary Goal:** [e.g., Deliver a production-ready lead-gen pipeline by Q3.]
 
-## 🧠 AGENTMEMORY (WSL2/Termux)
-- **Primary:** `localhost:3111` (PM2)
-- **Routine (Start):** `Recall memories related to [Project Topic]`
-- **Routine (End):** `Save a lesson: [What you learned]`
+## 🚀 AGENT SKILLS (ADDY OSMANI)
+- `/spec`: Define requirements and success metrics.
+- `/plan`: Map architecture and step-by-step implementation.
+- `/build`: Surgical code implementation with inline verification.
+- `/test`: Automated and manual validation.
 
-## 🛠️ STACK & TOOLS
-- **Cloud:** GCP (BigQuery, GCS, Vertex AI)
-- **Automation:** Apify, yt-dlp, ffmpeg
-- **Workflow:** Gemini CLI + MCP Bridge
+## 🧠 AGENTMEMORY INTELLIGENCE
+- **Endpoint:** `localhost:3111` (AgentMemory-Server)
+- **Daily Startup:** "Recall all context for [Project Name] and summarize active blockers."
+- **Daily Shutdown:** "Save lesson: [Identify the most critical engineering win/fail today]."
 
-## 📋 WORKFLOW
-1. **Ingest:** Fetch data via Apify or yt-dlp.
-2. **Process:** Clean and structure data.
-3. **Analyze:** Use LLMs for summarization and insights.
-4. **Sync:** Use `gcloud storage rsync` for cross-device consistency.
+## 🛠️ STACK & RESOURCES
+- **Cloud:** GCP (Project: `your-project-id`, Region: `us-central1`)
+- **Storage:** `gs://your-raw-data-bucket/`
+- **Scrapers:** Apify (LinkedIn Profile Scraper, Reddit Search Lite)
+- **Local:** Python 3.11+, Gemini CLI, yt-dlp, ffmpeg
 
-## ⚖️ CODE STYLE
-- **Python:** Type hints, docstrings (3.11+).
-- **Security:** Use environment variables for all secrets.
+## 📋 OPERATIONAL WORKFLOW
+1. **Discovery:** Trigger Apify scripts to fetch raw signals (LinkedIn/Reddit).
+2. **Ingestion:** Sync raw data to GCS using `gcloud storage cp`.
+3. **Processing:** Run `clean_vtt.py` and `summarize.py` on fresh transcripts.
+4. **Coaching:** Query Gemini CLI for high-level synthesis of processed data.
+
+## ⚖️ ENGINEERING STANDARDS
+- **Types:** Always use Python type hints and Pydantic for data validation.
+- **Logs:** Verbose logging for scrapers, silent mode for internal processing.
+- **Security:** Zero secrets in code; strictly use `.env` files.
+- **Context:** Update `GEMINI.md` after every major architectural shift.

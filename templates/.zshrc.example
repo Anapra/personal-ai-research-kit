@@ -1,19 +1,45 @@
-# --- Personal AI Research Kit Aliases ---
+# ==============================================================================
+# PERSONAL AI RESEARCH KIT - SHELL CONFIGURATION
+# ==============================================================================
 
-# AgentMemory Management
+# --- PATHS ---
+export PATH="$PATH:$HOME/.local/bin"
+export AI_KIT_ROOT="$HOME/personal-ai-research-kit"
+
+# --- CORE ALIASES ---
+
+# AgentMemory & PM2
 alias am-start="pm2 start ~/agentmemory/dist/cli.mjs --name 'agentmemory-server' -- --port 3111"
 alias am-stop="pm2 stop agentmemory-server"
 alias am-logs="pm2 logs agentmemory-server"
 alias am-status="pm2 status"
+alias am-restart="pm2 restart agentmemory-server"
 
-# GCP Sync
-alias gcp-push="gcloud storage rsync -r . gs://your-bucket-name/your-project-path"
-alias gcp-pull="gcloud storage rsync -r gs://your-bucket-name/your-project-path ."
+# GCP Data Sync (Replace 'your-bucket-name')
+alias gcp-push="gcloud storage rsync -r . gs://your-bucket-name/data"
+alias gcp-pull="gcloud storage rsync -r gs://your-bucket-name/data ."
 
 # Research Pipelines
-alias linkedin-search="python3 ~/personal-ai-research-kit/apify/linkedin/linkedin_research_pipeline.py"
-alias reddit-monitor="python3 ~/personal-ai-research-kit/apify/reddit/reddit_research_pipeline.py '' 20 monitor"
+alias li-search="python3 $AI_KIT_ROOT/apify/linkedin/linkedin_research_pipeline.py"
+alias rd-monitor="python3 $AI_KIT_ROOT/apify/reddit/reddit_research_pipeline.py '' 20 monitor"
 
-# --- Gemini CLI Integration ---
-# Ensure Gemini CLI is in path
-export PATH="$PATH:$HOME/.local/bin"
+# Course Processor (Zoomcamp)
+alias zc-download="python3 $AI_KIT_ROOT/video-processing/zoomcamp/download_and_transcribe.py"
+alias zc-clean="python3 $AI_KIT_ROOT/video-processing/zoomcamp/clean_vtt.py"
+
+# --- HELPER FUNCTIONS ---
+
+# Quickly switch to AI Kit root
+ai-kit() { cd "$AI_KIT_ROOT"; }
+
+# Initialize a new project with the AI Kit templates
+ai-init-project() {
+    cp "$AI_KIT_ROOT/templates/.env.example" .env
+    cp "$AI_KIT_ROOT/templates/GEMINI.md.example" GEMINI.md
+    echo "✅ Templates copied. Update .env and GEMINI.md to begin."
+}
+
+# --- ENVIRONMENT VARIABLES ---
+# export APIFY_TOKEN="your_token_here"
+# export GCS_BUCKET_NAME="your_bucket_here"
+# export GOOGLE_CLOUD_PROJECT="your_project_id"
