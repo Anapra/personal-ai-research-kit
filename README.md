@@ -20,6 +20,16 @@ I built this kit to bridge the gap between "consuming information" and "building
 
 This toolkit orchestrates a complete data engineering pipeline:
 
+```mermaid
+graph TD
+    A[Apify Scrapers] -->|Extract| B(Local/GCS Raw Storage)
+    B -->|Trigger| C[Cloud Function]
+    C -->|Enrich| D[Vertex AI SDK - Gemini 1.5]
+    D -->|Write| E[BigQuery Warehouse]
+    E -->|Visualize| F[Looker Studio Dashboard]
+    E -->|Summarize| G[Gemini CLI]
+```
+
 1.  **Extraction:** Scrapers (LinkedIn, Reddit) trigger **Apify Actors** to extract trending AI/Tech data.
 2.  **Ingestion:** Extracted JSON data is saved to **Local Storage** and mirrored to **Google Cloud Storage (GCS)**.
 3.  **Processing (Enrichment):** A **Cloud Function** (GCS Trigger) enriches data using the **Vertex AI SDK** (Gemini 1.5 Flash) with structured output.
@@ -45,7 +55,7 @@ This toolkit orchestrates a complete data engineering pipeline:
 - **Orchestration**: Apify Actors + custom Python 3.11 scripts.
 - **Data Warehouse**: Google BigQuery (Partitioned & Clustered).
 - **Cloud Infrastructure**: GCS, Cloud Functions (1st Gen), Vertex AI (SDK), Looker Studio.
-- **Security**: Scoped Service Accounts (least privilege: BQ DataEditor, Storage ObjectViewer).
+- **Security**: Scoped Service Accounts (Least Privilege: BQ DataEditor, Storage ObjectViewer).
 
 ---
 
@@ -72,6 +82,27 @@ Copy the provided templates and inject your personal credentials:
 cp templates/.env.example .env
 cp templates/GEMINI.md.example GEMINI.md
 cp templates/.zshrc.example ~/.zshrc_ai_kit
+```
+
+---
+
+## 📖 Example Commands
+
+**Trigger a Reddit Research Run:**
+```bash
+python3 apify/reddit/reddit_research_pipeline.py "Generative AI" 10 posts
+```
+
+**Generate an Intelligence Summary via Gemini CLI:**
+```bash
+# Analyze a raw data file for high-level trends
+gemini "Read scripts/sample_research_data.json and provide a strategic summary of AI trends."
+```
+
+**Sync Data to GCS:**
+```bash
+# Using the alias from .zshrc.example
+gcp-push
 ```
 
 ---
