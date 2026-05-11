@@ -23,7 +23,7 @@ This toolkit orchestrates a complete data intelligence pipeline:
 1.  **Extraction:** Scrapers (LinkedIn, Reddit) trigger **Apify Actors** to extract trending AI/Tech data.
 2.  **Ingestion:** Extracted JSON data is automatically saved to **Local Storage** and mirrored to **Google Cloud Storage (GCS)**.
 3.  **Synthesis:** **Gemini CLI** (via Vertex AI) reads the raw data to provide instant summaries, trend analysis, and action items.
-4.  **Visualization:** A modular **Firebase/Cloud Run Dashboard** (integrated via Cloud Functions) provides a visual interface for reviewing and scoring processed insights.
+4.  **Visualization:** A modular **Flask Research Dashboard** (deployed via Cloud Run) provides a visual interface for reviewing and scoring processed insights stored in **Firestore**.
 
 ---
 
@@ -33,8 +33,8 @@ This toolkit orchestrates a complete data intelligence pipeline:
 - **🔍 Smart Discovery** — Generic AI research pipelines for monitoring tech trends on LinkedIn and Reddit.
 - **📚 Course Processor** — Fully automated video transcript processing (yt-dlp + clean + summarize).
 - **🚀 Agent Skills** — Professional-grade engineering workflows (/spec, /plan, /build) ready out-of-the-box.
-- **🔄 Cross-Platform Sync** — Reliable environment and data synchronization via Google Cloud Storage.
-- **🏗️ Clean Architecture** — Strict "Template vs. Live" separation to protect your secrets.
+- **📊 Research Dashboard** — Flask-based UI for reviewing AI-scored insights and trends.
+- **⚡ Cloud-Native** — Serverless Cloud Functions for automatic data processing and scoring.
 
 ---
 
@@ -43,8 +43,8 @@ This toolkit orchestrates a complete data intelligence pipeline:
 - **LLM Interface**: Gemini CLI + AgentMemory (MCP Bridge).
 - **Orchestration**: Apify Actors + custom Python 3.11 scripts.
 - **Media Engine**: `yt-dlp` for extraction + `ffmpeg` for processing.
-- **Cloud Infrastructure**: Google Cloud Platform (GCS, BigQuery, Vertex AI, Firebase).
-- **Process Management**: PM2 for background automation.
+- **Cloud Infrastructure**: Google Cloud Platform (GCS, Firestore, Cloud Functions, Vertex AI, Cloud Run).
+- **Web Framework**: Flask (Research Dashboard).
 
 ---
 
@@ -71,6 +71,8 @@ cp templates/.zshrc.example ~/.zshrc_ai_kit
 ## 📁 Repository Structure
 
 - **`apify/`**: Social discovery engines (AI Tech Research on LinkedIn and Reddit).
+- **`cloud-function/`**: Logic for AI-driven scoring and ingestion into Firestore.
+- **`dashboard/`**: Flask-based web interface for insight review.
 - **`docs/`**: Platform-specific setup guides ([Termux](./docs/termux.md), [WSL2](./docs/wsl2.md)).
 - **`gemini-cli/`**: Custom prompt engineering and agent persona configurations.
 - **`setup/`**: Automated installation and OS-specific bootstrapping scripts.

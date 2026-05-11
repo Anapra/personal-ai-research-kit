@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Research Intelligence Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f9; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        header { text-align: center; padding: 20px 0; border-bottom: 2px solid #e1e8ed; margin-bottom: 30px; }
+        .insight-card { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; padding: 20px; transition: transform 0.2s; }
+        .insight-card:hover { transform: translateY(-5px); }
+        .score { float: right; font-size: 24px; font-weight: bold; color: #007bff; }
+        .title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .reasoning { font-style: italic; color: #666; margin: 10px 0; }
+        .summary { margin-bottom: 15px; }
+        .actions { border-top: 1px solid #eee; padding-top: 15px; }
+        .btn { padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 14px; margin-right: 10px; }
+        .btn-approve { background: #28a745; color: white; }
+        .btn-reject { background: #dc3545; color: white; }
+        .btn-link { background: #6c757d; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 AI Research Insights</h1>
+            <p>Qualified signals from LinkedIn, Reddit, and ArXiv</p>
+        </header>
+
+        {% for insight in insights %}
+        <div class="insight-card">
+            <span class="score">{{ insight.relevance_score }}</span>
+            <div class="title">{{ insight.title }}</div>
+            <div class="summary">{{ insight.summary_brief }}</div>
+            <div class="reasoning">"{{ insight.reasoning }}"</div>
+            <div class="actions">
+                <a href="{{ insight.url }}" target="_blank" class="btn btn-link">View Original</a>
+                <a href="#" class="btn btn-approve">Bookmark</a>
+                <a href="#" class="btn btn-reject">Archive</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
